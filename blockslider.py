@@ -1,9 +1,10 @@
 import io, re
 from utils import FileEx
 
-ref_str = "patch=0,EE,20"
+ref_str = "extended,00"
 
-new_address = 0x5416A0
+old_address = 0x35C7E8
+new_address = 0x35C820
 
 with io.open("pnach.txt", mode="r") as src:
     exsrc = FileEx(src)
@@ -13,10 +14,11 @@ with io.open("pnach.txt", mode="r") as src:
 
     seg2patch = [content[:seglst[0]]]
     for i in range(len(seglst)-1):
-        seg2patch.append("\n" + ref_str + "%0.6X" % (new_address+(4*i)))
-        seg2patch.append(content[seglst[i]+len(ref_str)+6:seglst[i+1]-1])
-    seg2patch.append('\n' + content[seglst[len(seglst)-1]:])
+        seg2patch.append(ref_str + "%0.6X" % ((int(content[seglst[i]+len(ref_str):seglst[i]+len(ref_str)+6], 16)-old_address)+new_address))
+        seg2patch.append(content[seglst[i]+len(ref_str)+6:seglst[i+1]])
 
+    seg2patch.append(ref_str + "%0.6X" % ((int(content[seglst[len(seglst)-1]+len(ref_str):seglst[len(seglst)-1]+len(ref_str)+6], 16)-old_address)+new_address))
+    seg2patch.append(content[seglst[len(seglst)-1]+len(ref_str)+6:])
 
-    with io.open("slided_pnach.txt", mode="w") as dst:
+    with io.open("slided_table_pnach.txt", mode="w") as dst:
         dst.write(''.join(seg2patch))
