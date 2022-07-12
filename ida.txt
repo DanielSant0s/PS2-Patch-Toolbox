@@ -1,0 +1,1820 @@
+//0x3D will be our experimental opcode
+
+seg000:001FAF00                               CRunningScript__ProcessCommands_0To99:   # DATA XREF: seg000:_opcodeHandlerTable↓o
+seg000:001FAF00
+seg000:001FAF00                               var_60          = -0x60
+seg000:001FAF00                               var_5C          = -0x5C
+seg000:001FAF00                               var_58          = -0x58
+seg000:001FAF00                               var_50          = -0x50
+seg000:001FAF00                               var_40          = -0x40
+seg000:001FAF00                               var_30          = -0x30
+seg000:001FAF00                               var_20          = -0x20
+seg000:001FAF00                               var_10          = -0x10
+seg000:001FAF00                               var_C           = -0xC
+seg000:001FAF00                               var_8           = -8
+seg000:001FAF00
+seg000:001FAF00 A0 FF BD 27                                   addiu   $sp, -0x60       # Add Immediate Unsigned
+seg000:001FAF04 64 00 A1 2C                                   sltiu   $at, $a1, 0x64   # switch 100 cases
+seg000:001FAF08 40 00 BF FF                                   sd      $ra, 0x60+var_20($sp)  # Store Doubleword
+seg000:001FAF0C 30 00 B2 7F                                   sq      $s2, 0x60+var_30($sp)  # Store Quadword
+seg000:001FAF10 20 00 B1 7F                                   sq      $s1, 0x60+var_40($sp)  # Store Quadword
+seg000:001FAF14 2D 90 80 00                                   move    $s2, $a0
+seg000:001FAF18 10 00 B0 7F                                   sq      $s0, 0x60+var_50($sp)  # Store Quadword
+seg000:001FAF1C 08 00 B6 E7                                   swc1    $f22, 0x60+var_58($sp)  # Store Word from FPU
+seg000:001FAF20 04 00 B5 E7                                   swc1    $f21, 0x60+var_5C($sp)  # Store Word from FPU
+seg000:001FAF24 46 05 20 10                                   beqz    $at, def_1FAF40  # jumptable 001FAF40 default case, cases 61-65,71-76,84-87
+seg000:001FAF28 00 00 B4 E7                                   swc1    $f20, 0x60+var_60($sp)  # Store Word from FPU
+seg000:001FAF2C 65 00 03 3C                                   lui     $v1, 0x65  # 'e'  # Load Upper Immediate
+seg000:001FAF30 80 10 05 00                                   sll     $v0, $a1, 2      # Shift Left Logical
+seg000:001FAF34 F0 C6 63 24                                   li      $v1, jpt_1FAF40  # Load Immediate
+seg000:001FAF38 21 10 43 00                                   addu    $v0, $v1         # Add Unsigned
+seg000:001FAF3C 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FAF40 08 00 40 00                                   jr      $v0              # switch jump
+seg000:001FAF44 00 00 00 00                                   nop
+seg000:001FAF48                                # ---------------------------------------------------------------------------
+seg000:001FAF48
+seg000:001FAF48                               loc_1FAF48:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FAF48                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FAF48 3F 05 00 10                                   b       loc_1FC448       # jumptable 001FAF40 case 0
+seg000:001FAF4C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FAF50                                # ---------------------------------------------------------------------------
+seg000:001FAF50
+seg000:001FAF50                               @@opcode_0001:                           # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FAF50                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FAF50 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # wait %1d%
+seg000:001FAF54 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FAF58 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FAF5C 24 09 83 8F                                   lw      $v1, _ZN6CTimer22m_snTimeInMillisecondsE  # Load Word
+seg000:001FAF60 B0 DF 24 8C                                   lw      $a0, ScriptParams  # Load Word
+seg000:001FAF64 01 00 02 24                                   li      $v0, 1           # Load Immediate
+seg000:001FAF68 21 18 83 00                                   addu    $v1, $a0, $v1    # Add Unsigned
+seg000:001FAF6C 36 05 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FAF70 CC 00 43 AE                                   sw      $v1, 0xCC($s2)   # Store Word
+seg000:001FAF70                                # ---------------------------------------------------------------------------
+seg000:001FAF74 00 00 00 00                                   .align 3
+seg000:001FAF78
+seg000:001FAF78                               @@opcode_0002:                           # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FAF78                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FAF78 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jump %1p%
+seg000:001FAF7C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FAF80 70 00 01 3C B0 DF 23 8C                       lw      $v1, ScriptParams  # Load Word
+seg000:001FAF88 05 00 61 04                                   bgez    $v1, loc_1FAFA0  # Branch on Greater Than or Equal to Zero
+seg000:001FAF8C 00 00 00 00                                   nop
+seg000:001FAF90 10 00 42 8E                                   lw      $v0, 0x10($s2)   # Load Word
+seg000:001FAF94 23 10 43 00                                   subu    $v0, $v1         # Subtract Unsigned
+seg000:001FAF98 05 00 00 10                                   b       loc_1FAFB0       # Branch Always
+seg000:001FAF9C 14 00 42 AE                                   sw      $v0, 0x14($s2)   # Store Word
+seg000:001FAFA0                                # ---------------------------------------------------------------------------
+seg000:001FAFA0
+seg000:001FAFA0                               loc_1FAFA0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+88↑j
+seg000:001FAFA0 6B 00 02 3C F0 1F 42 24                       li      $v0, _ZN11CTheScripts11ScriptSpaceE  # Load Immediate
+seg000:001FAFA8 21 10 43 00                                   addu    $v0, $v1         # Add Unsigned
+seg000:001FAFAC 14 00 42 AE                                   sw      $v0, 0x14($s2)   # Store Word
+seg000:001FAFB0
+seg000:001FAFB0                               loc_1FAFB0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+98↑j
+seg000:001FAFB0 25 05 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FAFB4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FAFB8                                # ---------------------------------------------------------------------------
+seg000:001FAFB8
+seg000:001FAFB8                               @@opcode_0003:                           # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FAFB8                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FAFB8 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # shake_camera %1d%
+seg000:001FAFBC 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FAFC0 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FAFC4 83 3A 02 3C                                   lui     $v0, 0x3A83      # Load Upper Immediate
+seg000:001FAFC8 B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FAFCC 6F 12 42 34                                   li      $v0, 0x3A83126F  # Load Immediate
+seg000:001FAFD0 70 00 04 3C                                   lui     $a0, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FAFD4 00 08 82 44                                   mtc1    $v0, $f1         # Move to FPU
+seg000:001FAFD8 30 E5 84 24                                   li      $a0, TheCamera   # Load Immediate
+seg000:001FAFDC 20 00 80 46                                   cvt.s.w $f0, $f0         # Floating-point Convert to Single Fixed-Point Format
+seg000:001FAFE0 38 69 08 0C                                   jal     sub_21A4E0       # Jump And Link
+seg000:001FAFE4 02 0B 00 46                                   mul.s   $f12, $f1, $f0   # Floating-point Multiply
+seg000:001FAFE8 17 05 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FAFEC 2D 10 00 00                                   move    $v0, $zero
+seg000:001FAFF0                                # ---------------------------------------------------------------------------
+seg000:001FAFF0
+seg000:001FAFF0                               loc_1FAFF0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FAFF0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FAFF0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 4
+seg000:001FAFF4 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FAFF8 2D 80 40 00                                   move    $s0, $v0
+seg000:001FAFFC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB000 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB004 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB008 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB00C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB010 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB014 0C 05 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB018 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FB018                                # ---------------------------------------------------------------------------
+seg000:001FB01C 00 00 00 00                                   .align 4
+seg000:001FB020
+seg000:001FB020                               loc_1FB020:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB020                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB020 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 5
+seg000:001FB024 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB028 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB02C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB030 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB034 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB038 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB03C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB040 B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FB044 00 05 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB048 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FB048                                # ---------------------------------------------------------------------------
+seg000:001FB04C 00 00 00 00                                   .align 4
+seg000:001FB050
+seg000:001FB050                               loc_1FB050:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB050                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB050 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 6
+seg000:001FB054 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB058 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB05C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB060 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB064 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB068 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB06C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB070 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB074 F4 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB078 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FB078                                # ---------------------------------------------------------------------------
+seg000:001FB07C 00 00 00 00                                   .align 4
+seg000:001FB080
+seg000:001FB080                               loc_1FB080:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB080                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB080 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 7
+seg000:001FB084 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB088 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB08C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB090 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB094 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB098 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB09C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB0A0 B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FB0A4 E8 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB0A8 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FB0A8                                # ---------------------------------------------------------------------------
+seg000:001FB0AC 00 00 00 00                                   .align 4
+seg000:001FB0B0
+seg000:001FB0B0                               loc_1FB0B0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB0B0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB0B0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 8
+seg000:001FB0B4 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB0B8 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB0BC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB0C0 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB0C4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB0C8 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB0CC 00 00 04 8E                                   lw      $a0, 0($s0)      # Load Word
+seg000:001FB0D0 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB0D4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB0D8 21 18 83 00                                   addu    $v1, $a0, $v1    # Add Unsigned
+seg000:001FB0DC DA 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB0E0 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FB0E0                                # ---------------------------------------------------------------------------
+seg000:001FB0E4 00 00 00 00                                   .align 3
+seg000:001FB0E8
+seg000:001FB0E8                               loc_1FB0E8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB0E8                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB0E8 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 9
+seg000:001FB0EC 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB0F0 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB0F4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB0F8 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB0FC 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB100 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB104 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB108 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB10C B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FB110 00 08 00 46                                   add.s   $f0, $f1, $f0    # Floating-point Add
+seg000:001FB114 CC 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB118 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FB118                                # ---------------------------------------------------------------------------
+seg000:001FB11C 00 00 00 00                                   .align 4
+seg000:001FB120
+seg000:001FB120                               loc_1FB120:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB120                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB120 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 10
+seg000:001FB124 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB128 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB12C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB130 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB134 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB138 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB13C 00 00 04 8E                                   lw      $a0, 0($s0)      # Load Word
+seg000:001FB140 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB144 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB148 21 18 83 00                                   addu    $v1, $a0, $v1    # Add Unsigned
+seg000:001FB14C BE 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB150 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FB150                                # ---------------------------------------------------------------------------
+seg000:001FB154 00 00 00 00                                   .align 3
+seg000:001FB158
+seg000:001FB158                               loc_1FB158:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB158                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB158 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 11
+seg000:001FB15C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB160 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB164 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB168 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB16C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB170 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB174 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB178 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB17C B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FB180 00 08 00 46                                   add.s   $f0, $f1, $f0    # Floating-point Add
+seg000:001FB184 B0 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB188 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FB188                                # ---------------------------------------------------------------------------
+seg000:001FB18C 00 00 00 00                                   .align 4
+seg000:001FB190
+seg000:001FB190                               loc_1FB190:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB190                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB190 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 12
+seg000:001FB194 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB198 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB19C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB1A0 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB1A4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB1A8 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB1AC 00 00 04 8E                                   lw      $a0, 0($s0)      # Load Word
+seg000:001FB1B0 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB1B4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB1B8 23 18 83 00                                   subu    $v1, $a0, $v1    # Subtract Unsigned
+seg000:001FB1BC A2 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB1C0 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FB1C0                                # ---------------------------------------------------------------------------
+seg000:001FB1C4 00 00 00 00                                   .align 3
+seg000:001FB1C8
+seg000:001FB1C8                               loc_1FB1C8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB1C8                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB1C8 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 13
+seg000:001FB1CC 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB1D0 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB1D4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB1D8 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB1DC 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB1E0 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB1E4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB1E8 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB1EC B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FB1F0 01 08 00 46                                   sub.s   $f0, $f1, $f0    # Floating-point Subtract
+seg000:001FB1F4 94 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB1F8 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FB1F8                                # ---------------------------------------------------------------------------
+seg000:001FB1FC 00 00 00 00                                   .align 4
+seg000:001FB200
+seg000:001FB200                               loc_1FB200:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB200                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB200 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 14
+seg000:001FB204 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB208 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB20C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB210 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB214 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB218 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB21C 00 00 04 8E                                   lw      $a0, 0($s0)      # Load Word
+seg000:001FB220 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB224 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB228 23 18 83 00                                   subu    $v1, $a0, $v1    # Subtract Unsigned
+seg000:001FB22C 86 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB230 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FB230                                # ---------------------------------------------------------------------------
+seg000:001FB234 00 00 00 00                                   .align 3
+seg000:001FB238
+seg000:001FB238                               loc_1FB238:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB238                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB238 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 15
+seg000:001FB23C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB240 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB244 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB248 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB24C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB250 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB254 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB258 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB25C B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FB260 01 08 00 46                                   sub.s   $f0, $f1, $f0    # Floating-point Subtract
+seg000:001FB264 78 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB268 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FB268                                # ---------------------------------------------------------------------------
+seg000:001FB26C 00 00 00 00                                   .align 4
+seg000:001FB270
+seg000:001FB270                               loc_1FB270:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB270                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB270 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 16
+seg000:001FB274 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB278 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB27C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB280 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB284 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB288 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB28C 00 00 04 8E                                   lw      $a0, 0($s0)      # Load Word
+seg000:001FB290 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB294 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB298 18 18 83 00                                   mult    $v1, $a0, $v1    # Multiply (3-operand)
+seg000:001FB29C 6A 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB2A0 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FB2A0                                # ---------------------------------------------------------------------------
+seg000:001FB2A4 00 00 00 00                                   .align 3
+seg000:001FB2A8
+seg000:001FB2A8                               loc_1FB2A8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB2A8                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB2A8 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 17
+seg000:001FB2AC 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB2B0 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB2B4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB2B8 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB2BC 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB2C0 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB2C4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB2C8 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB2CC B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FB2D0 02 08 00 46                                   mul.s   $f0, $f1, $f0    # Floating-point Multiply
+seg000:001FB2D4 5C 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB2D8 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FB2D8                                # ---------------------------------------------------------------------------
+seg000:001FB2DC 00 00 00 00                                   .align 4
+seg000:001FB2E0
+seg000:001FB2E0                               loc_1FB2E0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB2E0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB2E0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 18
+seg000:001FB2E4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB2E8 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB2EC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB2F0 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB2F4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB2F8 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB2FC 00 00 04 8E                                   lw      $a0, 0($s0)      # Load Word
+seg000:001FB300 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB304 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB308 18 18 83 00                                   mult    $v1, $a0, $v1    # Multiply (3-operand)
+seg000:001FB30C 4E 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB310 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FB310                                # ---------------------------------------------------------------------------
+seg000:001FB314 00 00 00 00                                   .align 3
+seg000:001FB318
+seg000:001FB318                               loc_1FB318:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB318                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB318 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 19
+seg000:001FB31C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB320 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB324 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB328 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB32C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB330 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB334 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB338 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB33C B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FB340 02 08 00 46                                   mul.s   $f0, $f1, $f0    # Floating-point Multiply
+seg000:001FB344 40 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB348 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FB348                                # ---------------------------------------------------------------------------
+seg000:001FB34C 00 00 00 00                                   .align 4
+seg000:001FB350
+seg000:001FB350                               loc_1FB350:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB350                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB350 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 20
+seg000:001FB354 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB358 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB35C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB360 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB364 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB368 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB36C 00 00 04 8E                                   lw      $a0, 0($s0)      # Load Word
+seg000:001FB370 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB374 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB378 1A 00 83 00                                   div     $a0, $v1         # Divide
+seg000:001FB37C 00 00 00 00                                   nop
+seg000:001FB380 00 00 00 00                                   nop
+seg000:001FB384 12 18 00 00                                   mflo    $v1              # Move From LO
+seg000:001FB388 2F 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB38C 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FB390                                # ---------------------------------------------------------------------------
+seg000:001FB390
+seg000:001FB390                               loc_1FB390:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB390                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB390 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 21
+seg000:001FB394 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB398 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB39C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB3A0 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB3A4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB3A8 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB3AC 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB3B0 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB3B4 B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FB3B8 03 08 00 46                                   div.s   $f0, $f1, $f0    # Floating-point Divide
+seg000:001FB3BC 00 00 00 00                                   nop
+seg000:001FB3C0 00 00 00 00                                   nop
+seg000:001FB3C4 20 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB3C8 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FB3C8                                # ---------------------------------------------------------------------------
+seg000:001FB3CC 00 00 00 00                                   .align 4
+seg000:001FB3D0
+seg000:001FB3D0                               loc_1FB3D0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB3D0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB3D0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 22
+seg000:001FB3D4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB3D8 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB3DC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB3E0 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB3E4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB3E8 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB3EC 00 00 04 8E                                   lw      $a0, 0($s0)      # Load Word
+seg000:001FB3F0 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB3F4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB3F8 1A 00 83 00                                   div     $a0, $v1         # Divide
+seg000:001FB3FC 00 00 00 00                                   nop
+seg000:001FB400 00 00 00 00                                   nop
+seg000:001FB404 12 18 00 00                                   mflo    $v1              # Move From LO
+seg000:001FB408 0F 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB40C 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FB410                                # ---------------------------------------------------------------------------
+seg000:001FB410
+seg000:001FB410                               loc_1FB410:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB410                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB410 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 23
+seg000:001FB414 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB418 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB41C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB420 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB424 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB428 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB42C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB430 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB434 B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FB438 03 08 00 46                                   div.s   $f0, $f1, $f0    # Floating-point Divide
+seg000:001FB43C 00 00 00 00                                   nop
+seg000:001FB440 00 00 00 00                                   nop
+seg000:001FB444 00 04 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB448 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FB448                                # ---------------------------------------------------------------------------
+seg000:001FB44C 00 00 00 00                                   .align 4
+seg000:001FB450
+seg000:001FB450                               loc_1FB450:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB450                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB450 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 24
+seg000:001FB454 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB458 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB45C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB460 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB464 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB468 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB46C 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FB470 B0 DF 22 8C                                   lw      $v0, ScriptParams  # Load Word
+seg000:001FB474 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB478 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB47C 2A 28 43 00                                   slt     $a1, $v0, $v1    # Set on Less Than
+seg000:001FB480 F1 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB484 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB488                                # ---------------------------------------------------------------------------
+seg000:001FB488
+seg000:001FB488                               loc_1FB488:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB488                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB488 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 25
+seg000:001FB48C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB490 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB494 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB498 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB49C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB4A0 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB4A4 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FB4A8 B0 DF 22 8C                                   lw      $v0, ScriptParams  # Load Word
+seg000:001FB4AC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB4B0 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB4B4 2A 28 43 00                                   slt     $a1, $v0, $v1    # Set on Less Than
+seg000:001FB4B8 E3 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB4BC 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB4C0                                # ---------------------------------------------------------------------------
+seg000:001FB4C0
+seg000:001FB4C0                               loc_1FB4C0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB4C0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB4C0 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 26
+seg000:001FB4C4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB4C8 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB4CC C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB4D0 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB4D4 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB4D8 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FB4DC B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB4E0 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB4E4 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB4E8 2A 28 43 00                                   slt     $a1, $v0, $v1    # Set on Less Than
+seg000:001FB4EC D6 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB4F0 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB4F0                                # ---------------------------------------------------------------------------
+seg000:001FB4F4 00 00 00 00                                   .align 3
+seg000:001FB4F8
+seg000:001FB4F8                               loc_1FB4F8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB4F8                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB4F8 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 27
+seg000:001FB4FC 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB500 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB504 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB508 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB50C 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB510 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FB514 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB518 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB51C FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB520 2A 28 43 00                                   slt     $a1, $v0, $v1    # Set on Less Than
+seg000:001FB524 C8 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB528 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB528                                # ---------------------------------------------------------------------------
+seg000:001FB52C 00 00 00 00                                   .align 4
+seg000:001FB530
+seg000:001FB530                               loc_1FB530:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB530                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB530 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 28
+seg000:001FB534 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB538 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB53C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB540 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB544 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB548 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FB54C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB550 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FB554 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB558 2A 28 43 00                                   slt     $a1, $v0, $v1    # Set on Less Than
+seg000:001FB55C BA 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB560 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB560                                # ---------------------------------------------------------------------------
+seg000:001FB564 00 00 00 00                                   .align 3
+seg000:001FB568
+seg000:001FB568                               loc_1FB568:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB568                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB568 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 29
+seg000:001FB56C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB570 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB574 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB578 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB57C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB580 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FB584 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB588 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FB58C FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB590 2A 28 43 00                                   slt     $a1, $v0, $v1    # Set on Less Than
+seg000:001FB594 AC 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB598 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB598                                # ---------------------------------------------------------------------------
+seg000:001FB59C 00 00 00 00                                   .align 4
+seg000:001FB5A0
+seg000:001FB5A0                               loc_1FB5A0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB5A0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB5A0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 30
+seg000:001FB5A4 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB5A8 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB5AC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB5B0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB5B4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB5B8 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FB5BC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB5C0 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FB5C4 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB5C8 2A 28 43 00                                   slt     $a1, $v0, $v1    # Set on Less Than
+seg000:001FB5CC 9E 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB5D0 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB5D0                                # ---------------------------------------------------------------------------
+seg000:001FB5D4 00 00 00 00                                   .align 3
+seg000:001FB5D8
+seg000:001FB5D8                               loc_1FB5D8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB5D8                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB5D8 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 31
+seg000:001FB5DC 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB5E0 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB5E4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB5E8 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB5EC 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB5F0 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FB5F4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB5F8 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FB5FC FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB600 2A 28 43 00                                   slt     $a1, $v0, $v1    # Set on Less Than
+seg000:001FB604 90 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB608 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB608                                # ---------------------------------------------------------------------------
+seg000:001FB60C 00 00 00 00                                   .align 4
+seg000:001FB610
+seg000:001FB610                               loc_1FB610:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB610                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB610 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 32
+seg000:001FB614 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB618 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB61C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB620 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB624 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB628 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB62C 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB630 B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FB634 36 08 00 46                                   c.le.s  $f1, $f0         # Floating-point Compare
+seg000:001FB638 02 00 00 45                                   bc1f    loc_1FB644       # Branch on FPU False
+seg000:001FB63C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB640 2D 28 00 00                                   move    $a1, $zero
+seg000:001FB644
+seg000:001FB644                               loc_1FB644:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+738↑j
+seg000:001FB644 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB648 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB64C 7E 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB650 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB650                                # ---------------------------------------------------------------------------
+seg000:001FB654 00 00 00 00                                   .align 3
+seg000:001FB658
+seg000:001FB658                               loc_1FB658:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB658                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB658 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 33
+seg000:001FB65C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB660 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB664 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB668 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB66C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB670 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB674 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB678 B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FB67C 36 08 00 46                                   c.le.s  $f1, $f0         # Floating-point Compare
+seg000:001FB680 02 00 00 45                                   bc1f    loc_1FB68C       # Branch on FPU False
+seg000:001FB684 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB688 2D 28 00 00                                   move    $a1, $zero
+seg000:001FB68C
+seg000:001FB68C                               loc_1FB68C:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+780↑j
+seg000:001FB68C FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB690 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB694 6C 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB698 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB698                                # ---------------------------------------------------------------------------
+seg000:001FB69C 00 00 00 00                                   .align 4
+seg000:001FB6A0
+seg000:001FB6A0                               loc_1FB6A0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB6A0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB6A0 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 34
+seg000:001FB6A4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB6A8 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB6AC C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB6B0 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB6B4 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB6B8 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FB6BC B0 DF 21 C4                                   lwc1    $f1, ScriptParams  # Load Word to FPU
+seg000:001FB6C0 36 08 00 46                                   c.le.s  $f1, $f0         # Floating-point Compare
+seg000:001FB6C4 02 00 00 45                                   bc1f    loc_1FB6D0       # Branch on FPU False
+seg000:001FB6C8 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB6CC 2D 28 00 00                                   move    $a1, $zero
+seg000:001FB6D0
+seg000:001FB6D0                               loc_1FB6D0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+7C4↑j
+seg000:001FB6D0 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB6D4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB6D8 5B 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB6DC 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB6E0                                # ---------------------------------------------------------------------------
+seg000:001FB6E0
+seg000:001FB6E0                               loc_1FB6E0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB6E0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB6E0 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 35
+seg000:001FB6E4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB6E8 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB6EC C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB6F0 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB6F4 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB6F8 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FB6FC B0 DF 21 C4                                   lwc1    $f1, ScriptParams  # Load Word to FPU
+seg000:001FB700 36 08 00 46                                   c.le.s  $f1, $f0         # Floating-point Compare
+seg000:001FB704 02 00 00 45                                   bc1f    loc_1FB710       # Branch on FPU False
+seg000:001FB708 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB70C 2D 28 00 00                                   move    $a1, $zero
+seg000:001FB710
+seg000:001FB710                               loc_1FB710:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+804↑j
+seg000:001FB710 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB714 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB718 4B 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB71C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB720                                # ---------------------------------------------------------------------------
+seg000:001FB720
+seg000:001FB720                               loc_1FB720:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB720                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB720 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 36
+seg000:001FB724 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB728 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB72C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB730 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB734 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB738 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB73C 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FB740 36 08 00 46                                   c.le.s  $f1, $f0         # Floating-point Compare
+seg000:001FB744 02 00 00 45                                   bc1f    loc_1FB750       # Branch on FPU False
+seg000:001FB748 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB74C 2D 28 00 00                                   move    $a1, $zero
+seg000:001FB750
+seg000:001FB750                               loc_1FB750:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+844↑j
+seg000:001FB750 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB754 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB758 3B 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB75C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB760                                # ---------------------------------------------------------------------------
+seg000:001FB760
+seg000:001FB760                               loc_1FB760:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB760                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB760 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 37
+seg000:001FB764 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB768 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB76C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB770 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB774 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB778 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB77C 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FB780 36 08 00 46                                   c.le.s  $f1, $f0         # Floating-point Compare
+seg000:001FB784 02 00 00 45                                   bc1f    loc_1FB790       # Branch on FPU False
+seg000:001FB788 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB78C 2D 28 00 00                                   move    $a1, $zero
+seg000:001FB790
+seg000:001FB790                               loc_1FB790:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+884↑j
+seg000:001FB790 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB794 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB798 2B 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB79C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB7A0                                # ---------------------------------------------------------------------------
+seg000:001FB7A0
+seg000:001FB7A0                               loc_1FB7A0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB7A0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB7A0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 38
+seg000:001FB7A4 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB7A8 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB7AC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB7B0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB7B4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB7B8 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB7BC 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FB7C0 36 08 00 46                                   c.le.s  $f1, $f0         # Floating-point Compare
+seg000:001FB7C4 02 00 00 45                                   bc1f    loc_1FB7D0       # Branch on FPU False
+seg000:001FB7C8 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB7CC 2D 28 00 00                                   move    $a1, $zero
+seg000:001FB7D0
+seg000:001FB7D0                               loc_1FB7D0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+8C4↑j
+seg000:001FB7D0 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB7D4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB7D8 1B 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB7DC 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB7E0                                # ---------------------------------------------------------------------------
+seg000:001FB7E0
+seg000:001FB7E0                               loc_1FB7E0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB7E0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB7E0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 39
+seg000:001FB7E4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB7E8 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB7EC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB7F0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB7F4 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB7F8 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FB7FC 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FB800 36 08 00 46                                   c.le.s  $f1, $f0         # Floating-point Compare
+seg000:001FB804 02 00 00 45                                   bc1f    loc_1FB810       # Branch on FPU False
+seg000:001FB808 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB80C 2D 28 00 00                                   move    $a1, $zero
+seg000:001FB810
+seg000:001FB810                               loc_1FB810:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+904↑j
+seg000:001FB810 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB814 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB818 0B 03 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB81C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB820                                # ---------------------------------------------------------------------------
+seg000:001FB820
+seg000:001FB820                               loc_1FB820:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB820                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB820 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 40
+seg000:001FB824 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB828 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB82C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB830 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB834 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB838 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB83C 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FB840 B0 DF 22 8C                                   lw      $v0, ScriptParams  # Load Word
+seg000:001FB844 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB848 2A 28 62 00                                   slt     $a1, $v1, $v0    # Set on Less Than
+seg000:001FB84C FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB850 01 00 A5 38                                   xori    $a1, 1           # Exclusive OR Immediate
+seg000:001FB854 FC 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB858 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB858                                # ---------------------------------------------------------------------------
+seg000:001FB85C 00 00 00 00                                   .align 4
+seg000:001FB860
+seg000:001FB860                               loc_1FB860:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB860                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB860 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 41
+seg000:001FB864 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB868 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB86C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB870 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FB874 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB878 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB87C 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FB880 B0 DF 22 8C                                   lw      $v0, ScriptParams  # Load Word
+seg000:001FB884 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB888 2A 28 62 00                                   slt     $a1, $v1, $v0    # Set on Less Than
+seg000:001FB88C FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB890 01 00 A5 38                                   xori    $a1, 1           # Exclusive OR Immediate
+seg000:001FB894 EC 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB898 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB898                                # ---------------------------------------------------------------------------
+seg000:001FB89C 00 00 00 00                                   .align 4
+seg000:001FB8A0
+seg000:001FB8A0                               loc_1FB8A0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB8A0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB8A0 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 42
+seg000:001FB8A4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB8A8 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB8AC C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB8B0 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB8B4 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB8B8 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FB8BC B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB8C0 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB8C4 2A 28 62 00                                   slt     $a1, $v1, $v0    # Set on Less Than
+seg000:001FB8C8 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB8CC 01 00 A5 38                                   xori    $a1, 1           # Exclusive OR Immediate
+seg000:001FB8D0 DD 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB8D4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB8D8                                # ---------------------------------------------------------------------------
+seg000:001FB8D8
+seg000:001FB8D8                               loc_1FB8D8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB8D8                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB8D8 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 43
+seg000:001FB8DC 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB8E0 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB8E4 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB8E8 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB8EC 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FB8F0 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FB8F4 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FB8F8 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB8FC 2A 28 62 00                                   slt     $a1, $v1, $v0    # Set on Less Than
+seg000:001FB900 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB904 01 00 A5 38                                   xori    $a1, 1           # Exclusive OR Immediate
+seg000:001FB908 CF 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB90C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB910                                # ---------------------------------------------------------------------------
+seg000:001FB910
+seg000:001FB910                               loc_1FB910:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB910                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB910 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 44
+seg000:001FB914 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB918 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB91C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB920 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB924 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB928 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FB92C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB930 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FB934 2A 28 62 00                                   slt     $a1, $v1, $v0    # Set on Less Than
+seg000:001FB938 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB93C 01 00 A5 38                                   xori    $a1, 1           # Exclusive OR Immediate
+seg000:001FB940 C1 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB944 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB948                                # ---------------------------------------------------------------------------
+seg000:001FB948
+seg000:001FB948                               loc_1FB948:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB948                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB948 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 45
+seg000:001FB94C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB950 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB954 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB958 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB95C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB960 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FB964 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB968 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FB96C 2A 28 62 00                                   slt     $a1, $v1, $v0    # Set on Less Than
+seg000:001FB970 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB974 01 00 A5 38                                   xori    $a1, 1           # Exclusive OR Immediate
+seg000:001FB978 B3 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB97C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB980                                # ---------------------------------------------------------------------------
+seg000:001FB980
+seg000:001FB980                               loc_1FB980:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB980                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB980 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 46
+seg000:001FB984 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB988 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB98C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB990 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB994 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB998 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FB99C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB9A0 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FB9A4 2A 28 62 00                                   slt     $a1, $v1, $v0    # Set on Less Than
+seg000:001FB9A8 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB9AC 01 00 A5 38                                   xori    $a1, 1           # Exclusive OR Immediate
+seg000:001FB9B0 A5 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB9B4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB9B8                                # ---------------------------------------------------------------------------
+seg000:001FB9B8
+seg000:001FB9B8                               loc_1FB9B8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB9B8                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB9B8 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 47
+seg000:001FB9BC 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FB9C0 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB9C4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB9C8 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FB9CC 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB9D0 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FB9D4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FB9D8 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FB9DC 2A 28 62 00                                   slt     $a1, $v1, $v0    # Set on Less Than
+seg000:001FB9E0 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FB9E4 01 00 A5 38                                   xori    $a1, 1           # Exclusive OR Immediate
+seg000:001FB9E8 97 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FB9EC 2D 10 00 00                                   move    $v0, $zero
+seg000:001FB9F0                                # ---------------------------------------------------------------------------
+seg000:001FB9F0
+seg000:001FB9F0                               loc_1FB9F0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FB9F0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FB9F0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 48
+seg000:001FB9F4 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FB9F8 2D 80 40 00                                   move    $s0, $v0
+seg000:001FB9FC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBA00 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FBA04 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBA08 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FBA0C 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FBA10 B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FBA14 34 08 00 46                                   c.lt.s  $f1, $f0         # Floating-point Compare
+seg000:001FBA18 02 00 00 45                                   bc1f    loc_1FBA24       # Branch on FPU False
+seg000:001FBA1C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBA20 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBA24
+seg000:001FBA24                               loc_1FBA24:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+B18↑j
+seg000:001FBA24 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBA28 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBA2C 86 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBA30 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBA30                                # ---------------------------------------------------------------------------
+seg000:001FBA34 00 00 00 00                                   .align 3
+seg000:001FBA38
+seg000:001FBA38                               loc_1FBA38:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBA38                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBA38 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 49
+seg000:001FBA3C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBA40 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBA44 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBA48 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FBA4C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBA50 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FBA54 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FBA58 B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FBA5C 34 08 00 46                                   c.lt.s  $f1, $f0         # Floating-point Compare
+seg000:001FBA60 02 00 00 45                                   bc1f    loc_1FBA6C       # Branch on FPU False
+seg000:001FBA64 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBA68 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBA6C
+seg000:001FBA6C                               loc_1FBA6C:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+B60↑j
+seg000:001FBA6C FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBA70 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBA74 74 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBA78 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBA78                                # ---------------------------------------------------------------------------
+seg000:001FBA7C 00 00 00 00                                   .align 4
+seg000:001FBA80
+seg000:001FBA80                               loc_1FBA80:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBA80                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBA80 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 50
+seg000:001FBA84 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBA88 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBA8C C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FBA90 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBA94 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FBA98 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FBA9C B0 DF 21 C4                                   lwc1    $f1, ScriptParams  # Load Word to FPU
+seg000:001FBAA0 34 08 00 46                                   c.lt.s  $f1, $f0         # Floating-point Compare
+seg000:001FBAA4 02 00 00 45                                   bc1f    loc_1FBAB0       # Branch on FPU False
+seg000:001FBAA8 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBAAC 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBAB0
+seg000:001FBAB0                               loc_1FBAB0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+BA4↑j
+seg000:001FBAB0 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBAB4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBAB8 63 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBABC 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBAC0                                # ---------------------------------------------------------------------------
+seg000:001FBAC0
+seg000:001FBAC0                               loc_1FBAC0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBAC0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBAC0 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 51
+seg000:001FBAC4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBAC8 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBACC C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FBAD0 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBAD4 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FBAD8 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FBADC B0 DF 21 C4                                   lwc1    $f1, ScriptParams  # Load Word to FPU
+seg000:001FBAE0 34 08 00 46                                   c.lt.s  $f1, $f0         # Floating-point Compare
+seg000:001FBAE4 02 00 00 45                                   bc1f    loc_1FBAF0       # Branch on FPU False
+seg000:001FBAE8 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBAEC 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBAF0
+seg000:001FBAF0                               loc_1FBAF0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+BE4↑j
+seg000:001FBAF0 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBAF4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBAF8 53 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBAFC 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBB00                                # ---------------------------------------------------------------------------
+seg000:001FBB00
+seg000:001FBB00                               loc_1FBB00:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBB00                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBB00 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 52
+seg000:001FBB04 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBB08 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBB0C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBB10 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FBB14 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBB18 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FBB1C 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FBB20 34 08 00 46                                   c.lt.s  $f1, $f0         # Floating-point Compare
+seg000:001FBB24 02 00 00 45                                   bc1f    loc_1FBB30       # Branch on FPU False
+seg000:001FBB28 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBB2C 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBB30
+seg000:001FBB30                               loc_1FBB30:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+C24↑j
+seg000:001FBB30 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBB34 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBB38 43 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBB3C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBB40                                # ---------------------------------------------------------------------------
+seg000:001FBB40
+seg000:001FBB40                               loc_1FBB40:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBB40                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBB40 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 53
+seg000:001FBB44 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBB48 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBB4C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBB50 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FBB54 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBB58 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FBB5C 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FBB60 34 08 00 46                                   c.lt.s  $f1, $f0         # Floating-point Compare
+seg000:001FBB64 02 00 00 45                                   bc1f    loc_1FBB70       # Branch on FPU False
+seg000:001FBB68 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBB6C 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBB70
+seg000:001FBB70                               loc_1FBB70:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+C64↑j
+seg000:001FBB70 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBB74 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBB78 33 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBB7C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBB80                                # ---------------------------------------------------------------------------
+seg000:001FBB80
+seg000:001FBB80                               loc_1FBB80:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBB80                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBB80 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 54
+seg000:001FBB84 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBB88 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBB8C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBB90 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FBB94 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBB98 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FBB9C 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FBBA0 34 08 00 46                                   c.lt.s  $f1, $f0         # Floating-point Compare
+seg000:001FBBA4 02 00 00 45                                   bc1f    loc_1FBBB0       # Branch on FPU False
+seg000:001FBBA8 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBBAC 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBBB0
+seg000:001FBBB0                               loc_1FBBB0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+CA4↑j
+seg000:001FBBB0 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBBB4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBBB8 23 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBBBC 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBBC0                                # ---------------------------------------------------------------------------
+seg000:001FBBC0
+seg000:001FBBC0                               loc_1FBBC0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBBC0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBBC0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 55
+seg000:001FBBC4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBBC8 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBBCC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBBD0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FBBD4 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBBD8 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FBBDC 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FBBE0 34 08 00 46                                   c.lt.s  $f1, $f0         # Floating-point Compare
+seg000:001FBBE4 02 00 00 45                                   bc1f    loc_1FBBF0       # Branch on FPU False
+seg000:001FBBE8 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBBEC 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBBF0
+seg000:001FBBF0                               loc_1FBBF0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+CE4↑j
+seg000:001FBBF0 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBBF4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBBF8 13 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBBFC 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBC00                                # ---------------------------------------------------------------------------
+seg000:001FBC00
+seg000:001FBC00                               loc_1FBC00:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBC00                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBC00 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 56
+seg000:001FBC04 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBC08 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBC0C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBC10 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FBC14 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBC18 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FBC1C 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FBC20 B0 DF 22 8C                                   lw      $v0, ScriptParams  # Load Word
+seg000:001FBC24 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBC28 26 28 62 00                                   xor     $a1, $v1, $v0    # Exclusive OR
+seg000:001FBC2C FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBC30 01 00 A5 2C                                   sltiu   $a1, 1           # Set on Less Than Immediate Unsigned
+seg000:001FBC34 04 02 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBC38 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBC38                                # ---------------------------------------------------------------------------
+seg000:001FBC3C 00 00 00 00                                   .align 4
+seg000:001FBC40
+seg000:001FBC40                               loc_1FBC40:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBC40                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBC40 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 57
+seg000:001FBC44 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBC48 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBC4C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBC50 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FBC54 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBC58 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FBC5C 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FBC60 B0 DF 22 8C                                   lw      $v0, ScriptParams  # Load Word
+seg000:001FBC64 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBC68 26 28 62 00                                   xor     $a1, $v1, $v0    # Exclusive OR
+seg000:001FBC6C FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBC70 01 00 A5 2C                                   sltiu   $a1, 1           # Set on Less Than Immediate Unsigned
+seg000:001FBC74 F4 01 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBC78 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBC78                                # ---------------------------------------------------------------------------
+seg000:001FBC7C 00 00 00 00                                   .align 4
+seg000:001FBC80
+seg000:001FBC80                               loc_1FBC80:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBC80                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBC80 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 58
+seg000:001FBC84 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBC88 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBC8C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBC90 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FBC94 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBC98 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FBC9C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBCA0 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FBCA4 26 28 62 00                                   xor     $a1, $v1, $v0    # Exclusive OR
+seg000:001FBCA8 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBCAC 01 00 A5 2C                                   sltiu   $a1, 1           # Set on Less Than Immediate Unsigned
+seg000:001FBCB0 E5 01 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBCB4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBCB8                                # ---------------------------------------------------------------------------
+seg000:001FBCB8
+seg000:001FBCB8                               loc_1FBCB8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBCB8                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBCB8 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 59
+seg000:001FBCBC 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBCC0 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBCC4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBCC8 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FBCCC 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBCD0 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FBCD4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBCD8 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FBCDC 26 28 62 00                                   xor     $a1, $v1, $v0    # Exclusive OR
+seg000:001FBCE0 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBCE4 01 00 A5 2C                                   sltiu   $a1, 1           # Set on Less Than Immediate Unsigned
+seg000:001FBCE8 D7 01 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBCEC 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBCF0                                # ---------------------------------------------------------------------------
+seg000:001FBCF0
+seg000:001FBCF0                               loc_1FBCF0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBCF0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBCF0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 60
+seg000:001FBCF4 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBCF8 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBCFC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBD00 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FBD04 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBD08 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FBD0C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBD10 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FBD14 26 28 62 00                                   xor     $a1, $v1, $v0    # Exclusive OR
+seg000:001FBD18 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBD1C 01 00 A5 2C                                   sltiu   $a1, 1           # Set on Less Than Immediate Unsigned
+seg000:001FBD20 C9 01 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBD24 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBD28                                # ---------------------------------------------------------------------------
+seg000:001FBD28
+seg000:001FBD28                               loc_1FBD28:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBD28                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBD28 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 66
+seg000:001FBD2C 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBD30 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBD34 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBD38 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FBD3C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBD40 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FBD44 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FBD48 B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FBD4C 32 08 00 46                                   c.eq.s  $f1, $f0         # Floating-point Compare
+seg000:001FBD50 02 00 01 45                                   bc1t    loc_1FBD5C       # Branch on FPU True
+seg000:001FBD54 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBD58 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBD5C
+seg000:001FBD5C                               loc_1FBD5C:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+E50↑j
+seg000:001FBD5C FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBD60 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBD64 B8 01 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBD68 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBD68                                # ---------------------------------------------------------------------------
+seg000:001FBD6C 00 00 00 00                                   .align 4
+seg000:001FBD70
+seg000:001FBD70                               loc_1FBD70:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBD70                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBD70 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 67
+seg000:001FBD74 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBD78 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBD7C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBD80 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # Jump And Link
+seg000:001FBD84 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBD88 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FBD8C 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FBD90 B0 DF 20 C4                                   lwc1    $f0, ScriptParams  # Load Word to FPU
+seg000:001FBD94 32 08 00 46                                   c.eq.s  $f1, $f0         # Floating-point Compare
+seg000:001FBD98 02 00 01 45                                   bc1t    loc_1FBDA4       # Branch on FPU True
+seg000:001FBD9C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBDA0 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBDA4
+seg000:001FBDA4                               loc_1FBDA4:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+E98↑j
+seg000:001FBDA4 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBDA8 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBDAC A6 01 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBDB0 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBDB0                                # ---------------------------------------------------------------------------
+seg000:001FBDB4 00 00 00 00                                   .align 3
+seg000:001FBDB8
+seg000:001FBDB8                               loc_1FBDB8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBDB8                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBDB8 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 68
+seg000:001FBDBC 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBDC0 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBDC4 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBDC8 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FBDCC 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBDD0 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FBDD4 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FBDD8 32 08 00 46                                   c.eq.s  $f1, $f0         # Floating-point Compare
+seg000:001FBDDC 02 00 01 45                                   bc1t    loc_1FBDE8       # Branch on FPU True
+seg000:001FBDE0 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBDE4 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBDE8
+seg000:001FBDE8                               loc_1FBDE8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+EDC↑j
+seg000:001FBDE8 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBDEC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBDF0 95 01 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBDF4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBDF8                                # ---------------------------------------------------------------------------
+seg000:001FBDF8
+seg000:001FBDF8                               loc_1FBDF8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBDF8                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBDF8 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 69
+seg000:001FBDFC 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBE00 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBE04 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBE08 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FBE0C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBE10 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FBE14 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FBE18 32 08 00 46                                   c.eq.s  $f1, $f0         # Floating-point Compare
+seg000:001FBE1C 02 00 01 45                                   bc1t    loc_1FBE28       # Branch on FPU True
+seg000:001FBE20 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBE24 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBE28
+seg000:001FBE28                               loc_1FBE28:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+F1C↑j
+seg000:001FBE28 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBE2C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBE30 85 01 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBE34 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBE38                                # ---------------------------------------------------------------------------
+seg000:001FBE38
+seg000:001FBE38                               loc_1FBE38:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBE38                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBE38 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 70
+seg000:001FBE3C 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FBE40 2D 80 40 00                                   move    $s0, $v0
+seg000:001FBE44 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBE48 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FBE4C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBE50 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FBE54 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FBE58 32 08 00 46                                   c.eq.s  $f1, $f0         # Floating-point Compare
+seg000:001FBE5C 02 00 01 45                                   bc1t    loc_1FBE68       # Branch on FPU True
+seg000:001FBE60 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBE64 2D 28 00 00                                   move    $a1, $zero
+seg000:001FBE68
+seg000:001FBE68                               loc_1FBE68:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+F5C↑j
+seg000:001FBE68 FC 1D 0C 0C                                   jal     _ZN14CRunningScript17UpdateCompareFlagEh  # Jump And Link
+seg000:001FBE6C 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBE70 75 01 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBE74 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBE78                                # ---------------------------------------------------------------------------
+seg000:001FBE78
+seg000:001FBE78                               loc_1FBE78:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBE78                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBE78 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 77
+seg000:001FBE7C 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBE80 C5 00 42 92                                   lbu     $v0, 0xC5($s2)   # Load Byte Unsigned
+seg000:001FBE84 0C 00 40 14                                   bnez    $v0, loc_1FBEB8  # Branch on Not Zero
+seg000:001FBE88 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FBE8C B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FBE90 05 00 61 04                                   bgez    $v1, loc_1FBEA8  # Branch on Greater Than or Equal to Zero
+seg000:001FBE94 00 00 00 00                                   nop
+seg000:001FBE98 10 00 42 8E                                   lw      $v0, 0x10($s2)   # Load Word
+seg000:001FBE9C 23 10 43 00                                   subu    $v0, $v1         # Subtract Unsigned
+seg000:001FBEA0 05 00 00 10                                   b       loc_1FBEB8       # Branch Always
+seg000:001FBEA4 14 00 42 AE                                   sw      $v0, 0x14($s2)   # Store Word
+seg000:001FBEA8                                # ---------------------------------------------------------------------------
+seg000:001FBEA8
+seg000:001FBEA8                               loc_1FBEA8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+F90↑j
+seg000:001FBEA8 6B 00 02 3C F0 1F 42 24                       li      $v0, _ZN11CTheScripts11ScriptSpaceE  # Load Immediate
+seg000:001FBEB0 21 10 43 00                                   addu    $v0, $v1         # Add Unsigned
+seg000:001FBEB4 14 00 42 AE                                   sw      $v0, 0x14($s2)   # Store Word
+seg000:001FBEB8
+seg000:001FBEB8                               loc_1FBEB8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+F84↑j
+seg000:001FBEB8                                                                        # CRunningScript__ProcessCommands_0To99+FA0↑j
+seg000:001FBEB8 63 01 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBEBC 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBEC0                                # ---------------------------------------------------------------------------
+seg000:001FBEC0
+seg000:001FBEC0                               loc_1FBEC0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBEC0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBEC0 DC 00 42 92                                   lbu     $v0, 0xDC($s2)   # jumptable 001FAF40 case 78
+seg000:001FBEC4 02 00 40 10                                   beqz    $v0, loc_1FBED0  # Branch on Zero
+seg000:001FBEC8 00 00 00 00                                   nop
+seg000:001FBECC 70 04 80 A3                                   sb      $zero, byte_66B560  # Store Byte
+seg000:001FBED0
+seg000:001FBED0                               loc_1FBED0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+FC4↑j
+seg000:001FBED0 04 00 43 8E                                   lw      $v1, 4($s2)      # Load Word
+seg000:001FBED4 04 00 60 10                                   beqz    $v1, loc_1FBEE8  # Branch on Zero
+seg000:001FBED8 00 00 00 00                                   nop
+seg000:001FBEDC 00 00 42 8E                                   lw      $v0, 0($s2)      # Load Word
+seg000:001FBEE0 03 00 00 10                                   b       loc_1FBEF0       # Branch Always
+seg000:001FBEE4 00 00 62 AC                                   sw      $v0, 0($v1)      # Store Word
+seg000:001FBEE8                                # ---------------------------------------------------------------------------
+seg000:001FBEE8
+seg000:001FBEE8                               loc_1FBEE8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+FD4↑j
+seg000:001FBEE8 00 00 42 8E                                   lw      $v0, 0($s2)      # Load Word
+seg000:001FBEEC 18 04 82 AF                                   sw      $v0, byte_66B508  # Store Word
+seg000:001FBEF0
+seg000:001FBEF0                               loc_1FBEF0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+FE0↑j
+seg000:001FBEF0 00 00 43 8E                                   lw      $v1, 0($s2)      # Load Word
+seg000:001FBEF4 04 00 60 10                                   beqz    $v1, loc_1FBF08  # Branch on Zero
+seg000:001FBEF8 00 00 00 00                                   nop
+seg000:001FBEFC 04 00 42 8E                                   lw      $v0, 4($s2)      # Load Word
+seg000:001FBF00 04 00 62 AC                                   sw      $v0, 4($v1)      # Store Word
+seg000:001FBF04 00 00 00 00                                   nop
+seg000:001FBF08
+seg000:001FBF08                               loc_1FBF08:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+FF4↑j
+seg000:001FBF08 1C 04 82 8F                                   lw      $v0, dword_66B50C  # Load Word
+seg000:001FBF0C 00 00 42 AE                                   sw      $v0, 0($s2)      # Store Word
+seg000:001FBF10 04 00 40 AE                                   sw      $zero, 4($s2)    # Store Word
+seg000:001FBF14 1C 04 82 8F                                   lw      $v0, dword_66B50C  # Load Word
+seg000:001FBF18 03 00 40 10                                   beqz    $v0, loc_1FBF28  # Branch on Zero
+seg000:001FBF1C 00 00 00 00                                   nop
+seg000:001FBF20 04 00 52 AC                                   sw      $s2, 4($v0)      # Store Word
+seg000:001FBF24 00 00 00 00                                   nop
+seg000:001FBF28
+seg000:001FBF28                               loc_1FBF28:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+1018↑j
+seg000:001FBF28 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBF2C 70 E6 07 0C                                   jal     sub_1F99C0       # Jump And Link
+seg000:001FBF30 1C 04 92 AF                                   sw      $s2, dword_66B50C  # Store Word
+seg000:001FBF34 44 01 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBF38 01 00 02 24                                   li      $v0, 1           # Load Immediate
+seg000:001FBF38                                # ---------------------------------------------------------------------------
+seg000:001FBF3C 00 00 00 00                                   .align 4
+seg000:001FBF40
+seg000:001FBF40                               loc_1FBF40:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBF40                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBF40 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 79
+seg000:001FBF44 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FBF48 70 00 01 3C B0 DF 22 8C                       lw      $v0, ScriptParams  # Load Word
+seg000:001FBF50 03 00 40 04                                   bltz    $v0, loc_1FBF60  # Branch on Less Than Zero
+seg000:001FBF54 00 00 00 00                                   nop
+seg000:001FBF58 2D 88 40 00                                   move    $s1, $v0
+seg000:001FBF5C 00 00 00 00                                   nop
+seg000:001FBF60
+seg000:001FBF60                               loc_1FBF60:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+1050↑j
+seg000:001FBF60 1C 04 90 8F                                   lw      $s0, dword_66B50C  # Load Word
+seg000:001FBF64 04 00 03 8E                                   lw      $v1, 4($s0)      # Load Word
+seg000:001FBF68 05 00 60 10                                   beqz    $v1, loc_1FBF80  # Branch on Zero
+seg000:001FBF6C 00 00 00 00                                   nop
+seg000:001FBF70 00 00 02 8E                                   lw      $v0, 0($s0)      # Load Word
+seg000:001FBF74 04 00 00 10                                   b       loc_1FBF88       # Branch Always
+seg000:001FBF78 00 00 62 AC                                   sw      $v0, 0($v1)      # Store Word
+seg000:001FBF78                                # ---------------------------------------------------------------------------
+seg000:001FBF7C 00 00 00 00                                   .align 4
+seg000:001FBF80
+seg000:001FBF80                               loc_1FBF80:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+1068↑j
+seg000:001FBF80 00 00 02 8E                                   lw      $v0, 0($s0)      # Load Word
+seg000:001FBF84 1C 04 82 AF                                   sw      $v0, dword_66B50C  # Store Word
+seg000:001FBF88
+seg000:001FBF88                               loc_1FBF88:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+1074↑j
+seg000:001FBF88 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FBF8C 04 00 60 10                                   beqz    $v1, loc_1FBFA0  # Branch on Zero
+seg000:001FBF90 00 00 00 00                                   nop
+seg000:001FBF94 04 00 02 8E                                   lw      $v0, 4($s0)      # Load Word
+seg000:001FBF98 04 00 62 AC                                   sw      $v0, 4($v1)      # Store Word
+seg000:001FBF9C 00 00 00 00                                   nop
+seg000:001FBFA0
+seg000:001FBFA0                               loc_1FBFA0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+108C↑j
+seg000:001FBFA0 88 E1 07 0C                                   jal     sub_1F8620       # Jump And Link
+seg000:001FBFA4 2D 20 00 02                                   move    $a0, $s0
+seg000:001FBFA8 6B 00 02 3C F0 1F 42 24                       li      $v0, _ZN11CTheScripts11ScriptSpaceE  # Load Immediate
+seg000:001FBFB0 21 10 51 00                                   addu    $v0, $s1         # Add Unsigned
+seg000:001FBFB4 14 00 02 AE                                   sw      $v0, 0x14($s0)   # Store Word
+seg000:001FBFB8 18 04 82 8F                                   lw      $v0, byte_66B508  # Load Word
+seg000:001FBFBC 00 00 02 AE                                   sw      $v0, 0($s0)      # Store Word
+seg000:001FBFC0 04 00 00 AE                                   sw      $zero, 4($s0)    # Store Word
+seg000:001FBFC4 18 04 82 8F                                   lw      $v0, byte_66B508  # Load Word
+seg000:001FBFC8 03 00 40 10                                   beqz    $v0, loc_1FBFD8  # Branch on Zero
+seg000:001FBFCC 00 00 00 00                                   nop
+seg000:001FBFD0 04 00 50 AC                                   sw      $s0, 4($v0)      # Store Word
+seg000:001FBFD4 00 00 00 00                                   nop
+seg000:001FBFD8
+seg000:001FBFD8                               loc_1FBFD8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+10C8↑j
+seg000:001FBFD8 18 04 90 AF                                   sw      $s0, byte_66B508  # Store Word
+seg000:001FBFDC 01 00 02 24                                   li      $v0, 1           # Load Immediate
+seg000:001FBFE0 2D 20 40 02                                   move    $a0, $s2
+seg000:001FBFE4 C4 00 02 A2                                   sb      $v0, 0xC4($s0)   # Store Byte
+seg000:001FBFE8 E0 DF 07 0C                                   jal     sub_1F7F80       # Jump And Link
+seg000:001FBFEC 2D 28 00 02                                   move    $a1, $s0
+seg000:001FBFF0 15 01 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FBFF4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FBFF8                                # ---------------------------------------------------------------------------
+seg000:001FBFF8
+seg000:001FBFF8                               loc_1FBFF8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FBFF8                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FBFF8 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 80
+seg000:001FBFFC 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC000 38 00 42 96                                   lhu     $v0, 0x38($s2)   # Load Halfword Unsigned
+seg000:001FC004 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FC008 14 00 44 8E                                   lw      $a0, 0x14($s2)   # Load Word
+seg000:001FC00C 01 00 43 24                                   addiu   $v1, $v0, 1      # Add Immediate Unsigned
+seg000:001FC010 80 10 02 00                                   sll     $v0, 2           # Shift Left Logical
+seg000:001FC014 38 00 43 A6                                   sh      $v1, 0x38($s2)   # Store Halfword
+seg000:001FC018 21 10 52 00                                   addu    $v0, $s2         # Add Unsigned
+seg000:001FC01C 18 00 44 AC                                   sw      $a0, 0x18($v0)   # Store Word
+seg000:001FC020 B0 DF 23 8C                                   lw      $v1, ScriptParams  # Load Word
+seg000:001FC024 06 00 61 04                                   bgez    $v1, loc_1FC040  # Branch on Greater Than or Equal to Zero
+seg000:001FC028 00 00 00 00                                   nop
+seg000:001FC02C 10 00 42 8E                                   lw      $v0, 0x10($s2)   # Load Word
+seg000:001FC030 23 10 43 00                                   subu    $v0, $v1         # Subtract Unsigned
+seg000:001FC034 06 00 00 10                                   b       loc_1FC050       # Branch Always
+seg000:001FC038 14 00 42 AE                                   sw      $v0, 0x14($s2)   # Store Word
+seg000:001FC038                                # ---------------------------------------------------------------------------
+seg000:001FC03C 00 00 00 00                                   .align 4
+seg000:001FC040
+seg000:001FC040                               loc_1FC040:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+1124↑j
+seg000:001FC040 6B 00 02 3C F0 1F 42 24                       li      $v0, _ZN11CTheScripts11ScriptSpaceE  # Load Immediate
+seg000:001FC048 21 10 43 00                                   addu    $v0, $v1         # Add Unsigned
+seg000:001FC04C 14 00 42 AE                                   sw      $v0, 0x14($s2)   # Store Word
+seg000:001FC050
+seg000:001FC050                               loc_1FC050:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+1134↑j
+seg000:001FC050 FD 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC054 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC058                                # ---------------------------------------------------------------------------
+seg000:001FC058
+seg000:001FC058                               loc_1FC058:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC058                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC058 38 00 43 96                                   lhu     $v1, 0x38($s2)   # jumptable 001FAF40 case 81
+seg000:001FC05C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC060 FF FF 63 24                                   addiu   $v1, -1          # Add Immediate Unsigned
+seg000:001FC064 38 00 43 A6                                   sh      $v1, 0x38($s2)   # Store Halfword
+seg000:001FC068 FF FF 63 30                                   andi    $v1, 0xFFFF      # AND Immediate
+seg000:001FC06C 80 18 03 00                                   sll     $v1, 2           # Shift Left Logical
+seg000:001FC070 21 18 72 00                                   addu    $v1, $s2         # Add Unsigned
+seg000:001FC074 18 00 63 8C                                   lw      $v1, 0x18($v1)   # Load Word
+seg000:001FC078 F3 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC07C 14 00 43 AE                                   sw      $v1, 0x14($s2)   # Store Word
+seg000:001FC080                                # ---------------------------------------------------------------------------
+seg000:001FC080
+seg000:001FC080                               loc_1FC080:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC080                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC080 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 82
+seg000:001FC084 06 00 05 24                                   li      $a1, 6           # Load Immediate
+seg000:001FC088 EF 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC08C 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC090                                # ---------------------------------------------------------------------------
+seg000:001FC090
+seg000:001FC090                               loc_1FC090:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC090                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC090 F4 DD 07 0C                                   jal     _ZN14CRunningScript17CollectParametersEs  # jumptable 001FAF40 case 83
+seg000:001FC094 04 00 05 24                                   li      $a1, 4           # Load Immediate
+seg000:001FC098 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FC09C 01 00 02 24                                   li      $v0, 1           # Load Immediate
+seg000:001FC0A0 B0 DF 30 8C                                   lw      $s0, ScriptParams  # Load Word
+seg000:001FC0A4 7C 00 01 3C 76 3C 23 90                       lbu     $v1, byte_7C3C76  # Load Byte Unsigned
+seg000:001FC0AC 07 00 63 30                                   andi    $v1, 7           # AND Immediate
+seg000:001FC0B0 07 00 62 10                                   beq     $v1, $v0, loc_1FC0D0  # Branch on Equal
+seg000:001FC0B4 2D 20 00 00                                   move    $a0, $zero
+seg000:001FC0B8 A8 A0 85 27                                   la      $a1, aPlayer     # "player"
+seg000:001FC0BC AC 1F 0B 0C                                   jal     sub_2C7EB0       # Jump And Link
+seg000:001FC0C0 68 00 06 24                                   li      $a2, 0x68  # 'h'  # Load Immediate
+seg000:001FC0C4 44 0F 0B 0C                                   jal     _ZN10CStreaming22LoadAllRequestedModelsEb  # Jump And Link
+seg000:001FC0C8 01 00 04 24                                   li      $a0, 1           # Load Immediate
+seg000:001FC0CC 00 00 00 00                                   nop
+seg000:001FC0D0
+seg000:001FC0D0                               loc_1FC0D0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+11B0↑j
+seg000:001FC0D0 B8 81 06 0C                                   jal     sub_1A06E0       # Jump And Link
+seg000:001FC0D4 2D 20 00 02                                   move    $a0, $s0
+seg000:001FC0D8 C0 18 10 00                                   sll     $v1, $s0, 3      # Shift Left Logical
+seg000:001FC0DC 71 00 02 3C                                   lui     $v0, 0x71  # 'q'  # Load Upper Immediate
+seg000:001FC0E0 23 18 70 00                                   subu    $v1, $s0         # Subtract Unsigned
+seg000:001FC0E4 D0 95 42 24                                   li      $v0, _ZN6CWorld13PlayerInFocusE  # Load Immediate
+seg000:001FC0E8 00 19 03 00                                   sll     $v1, 4           # Shift Left Logical
+seg000:001FC0EC 23 18 70 00                                   subu    $v1, $s0         # Subtract Unsigned
+seg000:001FC0F0 80 18 03 00                                   sll     $v1, 2           # Shift Left Logical
+seg000:001FC0F4 21 88 43 00                                   addu    $s1, $v0, $v1    # Add Unsigned
+seg000:001FC0F8 00 00 24 8E                                   lw      $a0, 0($s1)      # Load Word
+seg000:001FC0FC 68 43 06 0C                                   jal     sub_190DA0       # Jump And Link
+seg000:001FC100 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC104 38 82 06 0C                                   jal     sub_1A08E0       # Jump And Link
+seg000:001FC108 2D 20 00 02                                   move    $a0, $s0
+seg000:001FC10C 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FC110 C8 C2 02 3C                                   lui     $v0, 0xC2C8      # Load Upper Immediate
+seg000:001FC114 B4 DF 36 C4                                   lwc1    $f22, ScriptParams+4  # Load Word to FPU
+seg000:001FC118 00 00 82 44                                   mtc1    $v0, $f0         # Move to FPU
+seg000:001FC11C 70 00 01 3C B8 DF 35 C4                       lwc1    $f21, flt_6FDFB8  # Load Word to FPU
+seg000:001FC124 70 00 01 3C BC DF 34 C4                       lwc1    $f20, flt_6FDFBC  # Load Word to FPU
+seg000:001FC12C 36 A0 00 46                                   c.le.s  $f20, $f0        # Floating-point Compare
+seg000:001FC130 05 00 00 45                                   bc1f    loc_1FC148       # Branch on FPU False
+seg000:001FC134 06 B3 00 46                                   mov.s   $f12, $f22       # Floating-point Move
+seg000:001FC138 70 1A 0A 0C                                   jal     sub_2869C0       # Jump And Link
+seg000:001FC13C 46 AB 00 46                                   mov.s   $f13, $f21       # Floating-point Move
+seg000:001FC140 06 05 00 46                                   mov.s   $f20, $f0        # Floating-point Move
+seg000:001FC144 00 00 00 00                                   nop
+seg000:001FC148
+seg000:001FC148                               loc_1FC148:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+1230↑j
+seg000:001FC148 70 C9 08 0C                                   jal     sub_2325C0       # Jump And Link
+seg000:001FC14C 00 00 24 8E                                   lw      $a0, 0($s1)      # Load Word
+seg000:001FC150 00 00 23 8E                                   lw      $v1, 0($s1)      # Load Word
+seg000:001FC154 14 00 62 8C                                   lw      $v0, 0x14($v1)   # Load Word
+seg000:001FC158 07 00 40 10                                   beqz    $v0, loc_1FC178  # Branch on Zero
+seg000:001FC15C 00 A5 00 46                                   add.s   $f20, $f0        # Floating-point Add
+seg000:001FC160 30 00 56 E4                                   swc1    $f22, 0x30($v0)  # Store Word from FPU
+seg000:001FC164 14 00 62 8C                                   lw      $v0, 0x14($v1)   # Load Word
+seg000:001FC168 34 00 55 E4                                   swc1    $f21, 0x34($v0)  # Store Word from FPU
+seg000:001FC16C 14 00 62 8C                                   lw      $v0, 0x14($v1)   # Load Word
+seg000:001FC170 05 00 00 10                                   b       loc_1FC188       # Branch Always
+seg000:001FC174 38 00 54 E4                                   swc1    $f20, 0x38($v0)  # Store Word from FPU
+seg000:001FC178                                # ---------------------------------------------------------------------------
+seg000:001FC178
+seg000:001FC178                               loc_1FC178:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+1258↑j
+seg000:001FC178 04 00 76 E4                                   swc1    $f22, 4($v1)     # Store Word from FPU
+seg000:001FC17C 08 00 75 E4                                   swc1    $f21, 8($v1)     # Store Word from FPU
+seg000:001FC180 0C 00 74 E4                                   swc1    $f20, 0xC($v1)   # Store Word from FPU
+seg000:001FC184 00 00 00 00                                   nop
+seg000:001FC188
+seg000:001FC188                               loc_1FC188:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+1270↑j
+seg000:001FC188 50 00 B6 E7                                   swc1    $f22, 0x60+var_10($sp)  # Store Word from FPU
+seg000:001FC18C 54 00 B5 E7                                   swc1    $f21, 0x60+var_C($sp)  # Store Word from FPU
+seg000:001FC190 58 00 B4 E7                                   swc1    $f20, 0x60+var_8($sp)  # Store Word from FPU
+seg000:001FC194 00 00 25 8E                                   lw      $a1, 0($s1)      # Load Word
+seg000:001FC198 84 2A 0C 0C                                   jal     sub_30AA10       # Jump And Link
+seg000:001FC19C 50 00 A4 27                                   addiu   $a0, $sp, 0x60+var_10  # Add Immediate Unsigned
+seg000:001FC1A0 44 82 06 0C                                   jal     sub_1A0910       # Jump And Link
+seg000:001FC1A4 2D 20 00 02                                   move    $a0, $s0
+seg000:001FC1A8 70 00 01 3C                                   lui     $at, 0x70  # 'p'  # Load Upper Immediate
+seg000:001FC1AC 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC1B0 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC1B4 48 DF 07 0C                                   jal     _ZN14CRunningScript15StoreParametersEs  # Jump And Link
+seg000:001FC1B8 B0 DF 30 AC                                   sw      $s0, ScriptParams  # Store Word
+seg000:001FC1BC 68 F2 0F 0C                                   jal     _ZN5CTasknwEj    # Jump And Link
+seg000:001FC1C0 1C 00 04 24                                   li      $a0, 0x1C        # Load Immediate
+seg000:001FC1C4 04 00 40 10                                   beqz    $v0, loc_1FC1D8  # Branch on Zero
+seg000:001FC1C8 2D 20 40 00                                   move    $a0, $v0
+seg000:001FC1CC 00 8E 11 0C                                   jal     sub_463800       # Jump And Link
+seg000:001FC1D0 00 00 00 00                                   nop
+seg000:001FC1D4 00 00 00 00                                   nop
+seg000:001FC1D8
+seg000:001FC1D8                               loc_1FC1D8:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+12C4↑j
+seg000:001FC1D8 00 00 23 8E                                   lw      $v1, 0($s1)      # Load Word
+seg000:001FC1DC 2D 28 40 00                                   move    $a1, $v0
+seg000:001FC1E0 04 00 06 24                                   li      $a2, 4           # Load Immediate
+seg000:001FC1E4 2D 38 00 00                                   move    $a3, $zero
+seg000:001FC1E8 B4 04 62 8C                                   lw      $v0, 0x4B4($v1)  # Load Word
+seg000:001FC1EC 60 7E 11 0C                                   jal     _ZN12CTaskManager7SetTaskEP5CTaskib  # Jump And Link
+seg000:001FC1F0 04 00 44 24                                   addiu   $a0, $v0, 4      # Add Immediate Unsigned
+seg000:001FC1F4 94 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC1F8 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC1F8                                # ---------------------------------------------------------------------------
+seg000:001FC1FC 00 00 00 00                                   .align 4
+seg000:001FC200
+seg000:001FC200                               loc_1FC200:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC200                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC200 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 88
+seg000:001FC204 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC208 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC20C 2D 80 40 00                                   move    $s0, $v0
+seg000:001FC210 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FC214 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC218 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FC21C 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FC220 21 18 62 00                                   addu    $v1, $v0         # Add Unsigned
+seg000:001FC224 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC228 87 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC22C 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FC230                                # ---------------------------------------------------------------------------
+seg000:001FC230
+seg000:001FC230                               loc_1FC230:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC230                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC230 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 89
+seg000:001FC234 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC238 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC23C 2D 80 40 00                                   move    $s0, $v0
+seg000:001FC240 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FC244 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC248 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FC24C 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FC250 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC254 00 08 00 46                                   add.s   $f0, $f1, $f0    # Floating-point Add
+seg000:001FC258 7B 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC25C 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FC260                                # ---------------------------------------------------------------------------
+seg000:001FC260
+seg000:001FC260                               loc_1FC260:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC260                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC260 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 90
+seg000:001FC264 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC268 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC26C 2D 80 40 00                                   move    $s0, $v0
+seg000:001FC270 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FC274 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC278 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FC27C 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FC280 21 18 62 00                                   addu    $v1, $v0         # Add Unsigned
+seg000:001FC284 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC288 6F 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC28C 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FC290                                # ---------------------------------------------------------------------------
+seg000:001FC290
+seg000:001FC290                               loc_1FC290:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC290                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC290 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 91
+seg000:001FC294 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC298 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC29C 2D 80 40 00                                   move    $s0, $v0
+seg000:001FC2A0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FC2A4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC2A8 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FC2AC 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FC2B0 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC2B4 00 08 00 46                                   add.s   $f0, $f1, $f0    # Floating-point Add
+seg000:001FC2B8 63 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC2BC 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FC2C0                                # ---------------------------------------------------------------------------
+seg000:001FC2C0
+seg000:001FC2C0                               loc_1FC2C0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC2C0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC2C0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 92
+seg000:001FC2C4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC2C8 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC2CC 2D 80 40 00                                   move    $s0, $v0
+seg000:001FC2D0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FC2D4 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC2D8 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FC2DC 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FC2E0 21 18 62 00                                   addu    $v1, $v0         # Add Unsigned
+seg000:001FC2E4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC2E8 57 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC2EC 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FC2F0                                # ---------------------------------------------------------------------------
+seg000:001FC2F0
+seg000:001FC2F0                               loc_1FC2F0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC2F0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC2F0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 93
+seg000:001FC2F4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC2F8 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC2FC 2D 80 40 00                                   move    $s0, $v0
+seg000:001FC300 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FC304 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC308 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FC30C 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FC310 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC314 00 08 00 46                                   add.s   $f0, $f1, $f0    # Floating-point Add
+seg000:001FC318 4B 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC31C 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FC320                                # ---------------------------------------------------------------------------
+seg000:001FC320
+seg000:001FC320                               loc_1FC320:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC320                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC320 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 94
+seg000:001FC324 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC328 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC32C 2D 80 40 00                                   move    $s0, $v0
+seg000:001FC330 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FC334 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC338 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FC33C 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FC340 21 18 62 00                                   addu    $v1, $v0         # Add Unsigned
+seg000:001FC344 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC348 3F 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC34C 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FC350                                # ---------------------------------------------------------------------------
+seg000:001FC350
+seg000:001FC350                               loc_1FC350:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC350                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC350 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 95
+seg000:001FC354 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC358 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC35C 2D 80 40 00                                   move    $s0, $v0
+seg000:001FC360 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FC364 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC368 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FC36C 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FC370 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC374 00 08 00 46                                   add.s   $f0, $f1, $f0    # Floating-point Add
+seg000:001FC378 33 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC37C 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FC380                                # ---------------------------------------------------------------------------
+seg000:001FC380
+seg000:001FC380                               loc_1FC380:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC380                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC380 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 96
+seg000:001FC384 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC388 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC38C 2D 80 40 00                                   move    $s0, $v0
+seg000:001FC390 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FC394 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC398 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FC39C 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FC3A0 23 18 62 00                                   subu    $v1, $v0         # Subtract Unsigned
+seg000:001FC3A4 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC3A8 27 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC3AC 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FC3B0                                # ---------------------------------------------------------------------------
+seg000:001FC3B0
+seg000:001FC3B0                               loc_1FC3B0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC3B0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC3B0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 97
+seg000:001FC3B4 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC3B8 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC3BC 2D 80 40 00                                   move    $s0, $v0
+seg000:001FC3C0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FC3C4 02 00 05 24                                   li      $a1, 2           # Load Immediate
+seg000:001FC3C8 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FC3CC 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FC3D0 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC3D4 01 08 00 46                                   sub.s   $f0, $f1, $f0    # Floating-point Subtract
+seg000:001FC3D8 1B 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC3DC 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FC3E0                                # ---------------------------------------------------------------------------
+seg000:001FC3E0
+seg000:001FC3E0                               loc_1FC3E0:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC3E0                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC3E0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 98
+seg000:001FC3E4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC3E8 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC3EC 2D 80 40 00                                   move    $s0, $v0
+seg000:001FC3F0 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FC3F4 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC3F8 00 00 03 8E                                   lw      $v1, 0($s0)      # Load Word
+seg000:001FC3FC 00 00 42 8C                                   lw      $v0, 0($v0)      # Load Word
+seg000:001FC400 23 18 62 00                                   subu    $v1, $v0         # Subtract Unsigned
+seg000:001FC404 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC408 0F 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC40C 00 00 03 AE                                   sw      $v1, 0($s0)      # Store Word
+seg000:001FC410                                # ---------------------------------------------------------------------------
+seg000:001FC410
+seg000:001FC410                               loc_1FC410:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC410                                                                        # DATA XREF: seg000:jpt_1FAF40↓o
+seg000:001FC410 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # jumptable 001FAF40 case 99
+seg000:001FC414 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC418 2D 20 40 02                                   move    $a0, $s2
+seg000:001FC41C 2D 80 40 00                                   move    $s0, $v0
+seg000:001FC420 C0 E0 07 0C                                   jal     _ZN14CRunningScript26GetPointerToScriptVariableEh  # Jump And Link
+seg000:001FC424 01 00 05 24                                   li      $a1, 1           # Load Immediate
+seg000:001FC428 00 00 40 C4                                   lwc1    $f0, 0($v0)      # Load Word to FPU
+seg000:001FC42C 00 00 01 C6                                   lwc1    $f1, 0($s0)      # Load Word to FPU
+seg000:001FC430 2D 10 00 00                                   move    $v0, $zero
+seg000:001FC434 01 08 00 46                                   sub.s   $f0, $f1, $f0    # Floating-point Subtract
+seg000:001FC438 03 00 00 10                                   b       loc_1FC448       # Branch Always
+seg000:001FC43C 00 00 00 E6                                   swc1    $f0, 0($s0)      # Store Word from FPU
+seg000:001FC440                                # ---------------------------------------------------------------------------
+seg000:001FC440
+seg000:001FC440                               def_1FAF40:                              # CODE XREF: CRunningScript__ProcessCommands_0To99+24↑j
+seg000:001FC440                                                                        # CRunningScript__ProcessCommands_0To99+40↑j
+seg000:001FC440                                                                        # DATA XREF: ...
+seg000:001FC440 FF FF 02 24                                   li      $v0, 0xFFFFFFFF  # jumptable 001FAF40 default case, cases 61-65,71-76,84-87
+seg000:001FC444 00 00 00 00                                   nop
+seg000:001FC448
+seg000:001FC448                               loc_1FC448:                              # CODE XREF: CRunningScript__ProcessCommands_0To99:loc_1FAF48↑j
+seg000:001FC448                                                                        # CRunningScript__ProcessCommands_0To99+6C↑j ...
+seg000:001FC448 40 00 BF DF                                   ld      $ra, 0x60+var_20($sp)  # Load Doubleword
+seg000:001FC44C 30 00 B2 7B                                   lq      $s2, 0x60+var_30($sp)  # Load Quadword
+seg000:001FC450 08 00 B6 C7                                   lwc1    $f22, 0x60+var_58($sp)  # Load Word to FPU
+seg000:001FC454 20 00 B1 7B                                   lq      $s1, 0x60+var_40($sp)  # Load Quadword
+seg000:001FC458 04 00 B5 C7                                   lwc1    $f21, 0x60+var_5C($sp)  # Load Word to FPU
+seg000:001FC45C 10 00 B0 7B                                   lq      $s0, 0x60+var_50($sp)  # Load Quadword
+seg000:001FC460 00 00 B4 C7                                   lwc1    $f20, 0x60+var_60($sp)  # Load Word to FPU
+seg000:001FC464 08 00 E0 03                                   jr      $ra              # Jump Register
+seg000:001FC468 60 00 BD 27                                   addiu   $sp, 0x60        # Add Immediate Unsigned
+seg000:001FC468                                # End of function CRunningScript__ProcessCommands_0To99
+seg000:001FC468
+seg000:001FC468                                # ---------------------------------------------------------------------------
+seg000:001FC46C 00 00 00 00                                   .align 4
