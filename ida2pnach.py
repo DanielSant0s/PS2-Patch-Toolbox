@@ -55,7 +55,7 @@ with io.open("ida.txt", mode="r") as src:
     else:
         nonunsed_add.append(seg2patch[seglst[len(seglst)-1]:])
 
-    nonunsed_add.append(seg2patch[seglst[len(seglst)-1]:])
+    nonunsed_add.append(seg2patch[seglst[len(seglst)-1]+len(new_str)+8:])
 
     seg2patch = ''.join(nonunsed_add)
 
@@ -65,6 +65,7 @@ with io.open("ida.txt", mode="r") as src:
     for i in range(len(seglst)-1):
         lend_cmdlst.append(extended + seg2patch[seglst[i]+9:seglst[i]+11] + seg2patch[seglst[i]+6:seglst[i]+8] + seg2patch[seglst[i]+3:seglst[i]+5] + seg2patch[seglst[i]:seglst[i]+2])
         lend_cmdlst.append(seg2patch[seglst[i]+11:seglst[i+1]-1])
+    lend_cmdlst.append(extended + seg2patch[seglst[len(seglst)-1]+9:seglst[len(seglst)-1]+11] + seg2patch[seglst[len(seglst)-1]+6:seglst[len(seglst)-1]+8] + seg2patch[seglst[len(seglst)-1]+3:seglst[len(seglst)-1]+5] + seg2patch[seglst[len(seglst)-1]:seglst[len(seglst)-1]+2])
     lend_cmdlst.append(seg2patch[seglst[len(seglst)-1]:])
 
     seg2patch = ''.join(lend_cmdlst)
@@ -83,7 +84,18 @@ with io.open("ida.txt", mode="r") as src:
 
     lend_cmdlst.append(seg2patch[seglst[len(seglst)-1]:])
 
+    seg2patch = ''.join(lend_cmdlst)
+
+    seglst = [m.start()+38 for m in re.finditer(new_str, seg2patch)]
+
+    lend_cmdlst = [seg2patch[:seglst[0]]]
+    for i in range(len(seglst)-1):
+        lend_cmdlst.append("//")
+        lend_cmdlst.append(seg2patch[seglst[i]:seglst[i+1]])
+
+
     seg2patch = ''.join(lend_cmdlst).replace(" ,ext", ",ext")
+
 
     with io.open("pnach.txt", mode="w") as dst:
         dst.write(seg2patch)
