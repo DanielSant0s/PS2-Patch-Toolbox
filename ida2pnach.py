@@ -69,5 +69,21 @@ with io.open("ida.txt", mode="r") as src:
 
     seg2patch = ''.join(lend_cmdlst)
 
+    seglst = [m.start()+38 for m in re.finditer(new_str, seg2patch)]
+
+    lend_cmdlst = [seg2patch[:seglst[0]]]
+    for i in range(len(seglst)-1):
+        if seg2patch[seglst[i]] != " ":
+            lend_cmdlst.append("\n" + seg2patch[seglst[i]-38:seglst[i]-21])
+            lend_cmdlst.append("%0.2X" % (int(seg2patch[seglst[i]-21:seglst[i]-19], 16)+4))
+            lend_cmdlst.append(extended + seg2patch[seglst[i]+9:seglst[i]+11] + seg2patch[seglst[i]+6:seglst[i]+8] + seg2patch[seglst[i]+3:seglst[i]+5] + seg2patch[seglst[i]:seglst[i]+2])
+            lend_cmdlst.append(seg2patch[seglst[i]+11:seglst[i+1]-1])
+        else:
+            lend_cmdlst.append(seg2patch[seglst[i]:seglst[i+1]])
+
+    lend_cmdlst.append(seg2patch[seglst[len(seglst)-1]:])
+
+    seg2patch = ''.join(lend_cmdlst).replace(" ,ext", ",ext")
+
     with io.open("pnach.txt", mode="w") as dst:
         dst.write(seg2patch)
